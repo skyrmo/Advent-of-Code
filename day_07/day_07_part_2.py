@@ -22,6 +22,8 @@ def parse_input(file_path):
 
 weights = defaultdict(int)
 adj = defaultdict(list)
+seen_result = False
+result = None
 
 
 def dfs(node):
@@ -33,10 +35,9 @@ def dfs(node):
     if child_weights_equal:
         weight += sum(w for c, w in child_weights)
     else:
-        print("----")
-        for c, w in child_weights:
+        for i, (c, w) in enumerate(child_weights):
             print(c, w, weights[c])
-        print("----")
+        print("Result ^^^^^^^")
 
     return weight
 
@@ -58,7 +59,8 @@ def solve(input_data):
                 for child in children:
                     adj[name].append(child.strip())
 
-    return dfs("ahnofa")
+    dfs("ahnofa")
+    return result
 
 
 def main():
