@@ -1,5 +1,5 @@
 import os
-from collections import defaultdict, deque
+from collections import defaultdict
 
 
 def parse_input(file_path):
