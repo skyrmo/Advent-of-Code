@@ -1,9 +1,9 @@
-
 import os
+
 
 def parse_input(file_path):
     # Parse the input file
-    with open(file_path, 'r') as file:
+    with open(file_path, "r") as file:
         # Read the entire file
         data = file.read().strip()
 
@@ -18,15 +18,39 @@ def parse_input(file_path):
 
         return data
 
+
 def solve(input_data):
-    print(input_data)
+    a = 512
+    b = 191
+
+    result = 0
+
+    a_factor = 16807
+    b_factor = 48271
+
+    modulo = 2147483647
+
+    for i in range(5000000):
+        a = (a * a_factor) % modulo
+        while a % 4 != 0:
+            a = (a * a_factor) % modulo
+
+        b = (b * b_factor) % modulo
+        while b % 8 != 0:
+            b = (b * b_factor) % modulo
+
+        if (a & 0xFFFF) == (b & 0xFFFF):
+            result += 1
+
+    return result
+
 
 def main():
     # Get the directory of the current script
     script_dir = os.path.dirname(os.path.abspath(__file__))
 
     # Construct the input file path relative to the script's location
-    input_path = os.path.join(script_dir, 'input.txt')
+    input_path = os.path.join(script_dir, "input.txt")
     # input_path = os.path.join(script_dir, 'sample_input.txt')
 
     # Parse input
@@ -36,5 +60,6 @@ def main():
     result = solve(parsed_input)
     print(f"Solution for Day 15, Part Two: {result}")
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     main()
