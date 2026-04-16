@@ -1,9 +1,9 @@
-
 import os
+
 
 def parse_input(file_path):
     # Parse the input file
-    with open(file_path, 'r') as file:
+    with open(file_path, "r") as file:
         # Read the entire file
         data = file.read().strip()
 
@@ -18,15 +18,26 @@ def parse_input(file_path):
 
         return data
 
+
 def solve(input_data):
-    print(input_data)
+    k = int(input_data)
+    pos = 0
+    result = None
+
+    for i in range(1, 50_000_001):
+        pos = (pos + k) % i + 1
+        if pos == 1:
+            result = i
+
+    return result
+
 
 def main():
     # Get the directory of the current script
     script_dir = os.path.dirname(os.path.abspath(__file__))
 
     # Construct the input file path relative to the script's location
-    input_path = os.path.join(script_dir, 'input.txt')
+    input_path = os.path.join(script_dir, "input.txt")
     # input_path = os.path.join(script_dir, 'sample_input.txt')
 
     # Parse input
@@ -36,5 +47,6 @@ def main():
     result = solve(parsed_input)
     print(f"Solution for Day 17, Part Two: {result}")
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     main()
