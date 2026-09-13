@@ -44,7 +44,7 @@ def solve(input_data):
 
     cur = (".#.", "..#", "###")
 
-    for _ in range(18):
+    for _ in range(5):
         size = len(cur)
         stepsize = 2 if size % 2 == 0 else 3
         blocks = size // stepsize
